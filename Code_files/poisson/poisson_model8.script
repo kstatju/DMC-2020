@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Copy/paste this job script into a text file and submit with the command:
+#    sbatch thefilename
+
+#SBATCH --time=24:00:00   # walltime limit (HH:MM:SS)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --ntasks-per-node=16   # 16 processor core(s) per node 
+#SBATCH --mem=120G   # maximum memory per node
+#SBATCH --job-name="poisson_model8"
+#SBATCH --mail-user=kanakc@iastate.edu   # email address
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output="Out_poisson_model8" # job standard output file (%j replaced by job id)
+#SBATCH --error="Err_poisson_model8" # job standard error file (%j replaced by job id)
+
+# LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+
+module load R
+R CMD BATCH poisson8_repeated_CV_Platform_condo_parallel_with_prep.R poisson_model8.Log
